@@ -1,0 +1,20 @@
+=  Introduction
+This project allows a user to read in a CSV file of a person's last name and first name and insert these entries into a database.
+Both the lab exercise and the associated solution are provided .
+
+== Build the project
+
+=== To build the lab project
+
+```
+cd batch-lab 
+./mvnw clean install
+```
+=== To build the solution  project
+
+```
+cd batch-solution 
+./mvnw clean install
+```
+
+ 
