@@ -1,4 +1,5 @@
-=  Introduction
+==  Introduction
+
 This project allows a user to read in a CSV file of a person's last name and first name and insert these entries into a database.
 Both the lab exercise and the associated solution are provided .
 
