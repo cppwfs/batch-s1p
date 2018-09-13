@@ -39,8 +39,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-@EnableBatchProcessing
-@EnableTask
+// Add @EnableBatchProcessing
+// Add @Enable Task
 @Configuration
 public class BatchLabConfiguration {
 
@@ -74,10 +74,8 @@ public class BatchLabConfiguration {
 	/**
 	 * Get Spring to pass in the factories created by Spring Boot.
 	 *
-	 * @param jobBuilderFactory
-	 *            A builder for creating a new Job.
-	 * @param stepBuilderFactory
-	 *            A builder for creating a new Job Step.
+	 * @param jobBuilderFactory  A builder for creating a new Job.
+	 * @param stepBuilderFactory A builder for creating a new Job Step.
 	 */
 	@Autowired
 	public BatchLabConfiguration(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory) {
@@ -107,7 +105,7 @@ public class BatchLabConfiguration {
 				.name(PERSON_ITEM_READER) // Give it a name
 				.resource(new ClassPathResource(SAMPLE_DATA_CSV)) // Input data source
 				.delimited() // Get a delimited builder
-				.names(new String[] { "firstName", "lastName" }) // Names of columns in file
+				.names(new String[]{"firstName", "lastName"}) // Names of columns in file
 				.fieldSetMapper(fieldMapper) // Mapper to convert columns to fields
 				.build();
 	}
@@ -130,9 +128,8 @@ public class BatchLabConfiguration {
 	 * underlying database using JPA. The Person object must be an @Entity for this
 	 * to work.
 	 *
-	 * @param entityManagerFactory
-	 *            To use JPA we need entity-managers. This factory creates them on
-	 *            demand.
+	 * @param entityManagerFactory To use JPA we need entity-managers. This factory creates them on
+	 *                             demand.
 	 * @return The JPA item writer.
 	 */
 	@Bean
@@ -146,13 +143,11 @@ public class BatchLabConfiguration {
 	 * Setup the Job using the post-job listener and the specified step. A job may
 	 * have many steps, this one has just one.
 	 *
-	 * @param listener
-	 *            The job-completion listener will be invoked once the job has
-	 *            finished. There are several listeners that can be applied to both
-	 *            jobs and steps. Their output can be viewed as a Stream when
-	 *            running a Spring Batch task in Spring Cloud Data Flow.
-	 * @param step1
-	 *            The only step in this job.
+	 * @param listener The job-completion listener will be invoked once the job has
+	 *                 finished. There are several listeners that can be applied to both
+	 *                 jobs and steps. Their output can be viewed as a Stream when
+	 *                 running a Spring Batch task in Spring Cloud Data Flow.
+	 * @param step1    The only step in this job.
 	 * @return
 	 */
 	@Bean
@@ -170,21 +165,13 @@ public class BatchLabConfiguration {
 	 * Person objects, transform their names to upper case and save them in the H2
 	 * database.
 	 *
-	 * @param reader
-	 *            The Item Reader to use.
-	 * @param processor
-	 *            An Item Processor to convert the names
-	 * @param writer
-	 *            An Item Writer to save to the database
+	 * @param reader    The Item Reader to use.
+	 * @param processor An Item Processor to convert the names
+	 * @param writer    An Item Writer to save to the database
 	 * @return The step.
 	 */
 	@Bean
 	public Step step1(ItemReader<Person> reader, ItemProcessor<Person, Person> processor, ItemWriter<Person> writer) {
-		return stepBuilderFactory.get(STEP_NAME) // Get a builder for this step
-				.<Person, Person>chunk(10) // Set chunk size to 10
-				.reader(reader) // Specify the item-reader
-				.processor(processor) // Specify the processor
-				.writer(writer) // Specify the item-writer
-				.build(); // Create the Step from the configuration
+		// Add the Step Builder Code Here
 	}
 }

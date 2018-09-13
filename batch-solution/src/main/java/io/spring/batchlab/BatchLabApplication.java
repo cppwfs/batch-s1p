@@ -13,13 +13,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @SpringBootApplication
 public class BatchLabApplication {
 
-	/**
-	 * The number of lines in <tt>src/main/resources/sample-data.csv</tt> - one per
-	 * person.
-	 */
-	public static final int RECORDS_EXPECTED = 5;
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(BatchLabApplication.class, args);
 
@@ -30,14 +23,12 @@ public class BatchLabApplication {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... args) throws Exception {
-				//ApplicationContext context = SpringApplication.run(BatchdemoApplication.class, args);
 				checkResults(context.getBean(JdbcTemplate.class));
 			}
 		};
 	}
 	/**
-	 * Checks the in-memory test database (H2) contains the expected number of
-	 * Person records.
+	 * Checks the People table to see if it contains Person records.
 	 *
 	 * @param jdbcTemplate
 	 *            A JdbcTemplate for checking the PEOPLE table contents.
@@ -50,10 +41,11 @@ public class BatchLabApplication {
 
 		logger.info("Finished. Application loaded " + creationCount + " people");
 
-		if (creationCount != RECORDS_EXPECTED)
-			throw new IllegalStateException("FAIL: Five Person records should have been created");
+		if (creationCount == 0)
+			throw new IllegalStateException("No People records were created");
 		else
 			logger.info("Congratulations, application SUCCEEDED");
 
 	}
 }
+

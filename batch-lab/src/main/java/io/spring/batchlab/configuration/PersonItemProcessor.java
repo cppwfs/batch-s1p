@@ -31,8 +31,8 @@ public class PersonItemProcessor implements ItemProcessor<Person, Person> {
 	@Override
 	public Person process(final Person person) throws Exception {
 		// Force name to upper-case
-		final Person transformedPerson = new Person( //
-				person.getFirstName().toUpperCase(), //
+		final Person transformedPerson = new Person(
+				person.getFirstName().toUpperCase(),
 				person.getLastName().toUpperCase());
 
 		log.info("Converting (" + person + ") into (" + transformedPerson + ")");
